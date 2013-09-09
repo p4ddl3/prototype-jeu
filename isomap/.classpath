@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="libs/slick.jar"/>
+	<classpathentry kind="lib" path="libs/slick.jar" sourcepath="D:/Simon/Etudes/Java-libs/Slick2D/src">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/D:/Simon/Etudes/Java-libs/Slick2D/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="libs/gson-2.2.4.jar" sourcepath="libs/sources/gson-2.2.4-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/isomap/libs/javadoc/gson-2.2.4-javadoc.jar!/"/>
@@ -13,5 +17,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="isomap/libs/natives-win64"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/artemis.jar" sourcepath="libs/sources/artemis-src.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
