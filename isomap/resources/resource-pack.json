@@ -1,0 +1,19 @@
+{
+	"resourcePackName":"map_tiles",
+	"imagesFolder":"resources/tiles/",
+	"images":[],
+	"spriteSheets":[
+		{
+			"spriteSheetName":"tileset",
+			"spriteSheetImageFile":"tileset.png",
+			"width":8,
+			"height":2,
+			"tileWidth":50,
+			"tileHeight":33,
+			"spaceX":58,
+			"spaceY":40,
+			"firstGid":1
+		}
+	]
+	
+}

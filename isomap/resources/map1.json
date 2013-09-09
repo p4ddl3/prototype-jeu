@@ -1,0 +1,67 @@
+{ "height":10,
+ "layers":[
+        {
+         "data":[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 13, 17, 17, 17, 17, 5, 5, 5, 5, 5, 12, 1, 1, 1, 1, 17, 18, 5, 5, 5, 12, 1, 1, 1, 1, 1, 18, 5, 5, 5, 12, 1, 1, 1, 1, 1, 7, 5, 5, 5, 8, 1, 1, 1, 1, 1, 7, 5, 5, 5, 5, 8, 19, 1, 14, 2, 3, 5, 5, 5, 5, 5, 8, 2, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+         "height":10,
+         "name":"Calque de Tile 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 21, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 23, 0, 0, 0, 21, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 22, 21, 0, 0, 0, 0, 0, 23, 0, 0, 21, 23, 22, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 23, 0, 0, 0, 0, 0, 21, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
+         "height":10,
+         "name":"foreground",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }],
+ "orientation":"isometric",
+ "properties":
+    {
+
+    },
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"resources/tileset/basic_isometric_tile_set.png",
+         "imageheight":133,
+         "imagewidth":321,
+         "margin":1,
+         "name":"basic_isometric_tile_set",
+         "properties":
+            {
+
+            },
+         "spacing":1,
+         "tileheight":32,
+         "tilewidth":63,
+         "transparentcolor":"#000000"
+        }, 
+        {
+         "firstgid":21,
+         "image":"resources/tileset/tree.png",
+         "imageheight":131,
+         "imagewidth":73,
+         "margin":1,
+         "name":"tree",
+         "properties":
+            {
+
+            },
+         "spacing":1,
+         "tileheight":32,
+         "tilewidth":63,
+         "transparentcolor":"#000000"
+        }],
+ "tilewidth":64,
+ "version":1,
+ "width":10
+}
