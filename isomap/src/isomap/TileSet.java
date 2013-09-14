@@ -16,6 +16,9 @@ public class TileSet {
 		load();
 	}
 	
+	/**
+	 * Charge le spritesheet et le découpe en une multitude d'images.
+	 */
 	public void load(){
 		try {
 			spriteSheet = new Image(json.image);
@@ -32,10 +35,10 @@ public class TileSet {
 		int endx = startx+tilewidth;
 		int endy = starty+tileheight;
 		Image img;
-		while(endy< json.imageheight){
+		while(endy<= json.imageheight){
 			
 			
-			while( endx< json.imagewidth){
+			while( endx<= json.imagewidth){
 				img = spriteSheet.getSubImage(startx, starty, tilewidth, tileheight);
 				images.add(img);
 				startx = endx+json.spacing;
@@ -52,10 +55,20 @@ public class TileSet {
 	public List<Image> getImages(){
 		return images;
 	}
+	/**
+	 * retourne le gid du premier tile, tel qu'il est définit dans le fichier de la map. 
+	 * @return
+	 */
 	public int getFirstGid(){
 		return json.firstgid;
 	}
 	
+	/**
+	 * classe interne qui permet de faire le lien entre le JSON et l'objet.
+	 * Refactoring dans pas longtemps en un TileSetData (pour respecter les conventions)
+	 * @author Simon
+	 *
+	 */
 	public static  class TileSetJson{
 	public int firstgid;
 	public String image;
@@ -68,6 +81,8 @@ public class TileSet {
 	
 	public int tileheight;
 	public int tilewidth;
+	
+	public String name;
 	}
 	
 	

@@ -3,7 +3,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Petit dépot fourre-tout de méthodes pratiques
+ * @author Simon
+ *
+ */
 public class Utils {
 	public static String loadJSON(String file){
 		String json = "";

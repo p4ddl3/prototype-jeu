@@ -1,22 +1,33 @@
 package isomap;
 
-import isomap.systems.CameraSystem;
+import java.awt.event.KeyEvent;
+
+import isomap.rendering.systems.CameraSystem;
+import isomap.rendering.systems.TerrainRenderSystem;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 
 import com.artemis.World;
+
+/***
+ * Classe principale du jeu. Initialise le monde Artemis, charge la map et crée les systèmes.
+ * @author Simon
+ *
+ */
+
 
 
 public class IsoMapGame extends BasicGame{
 
-	private IsoMap map;
 	private World world;
 	private CameraSystem cameraSystem;
+	
+	private TerrainRenderSystem terrainRenderSystem;
 	public IsoMapGame(){
 		super("IsoMap");
 	}
@@ -27,9 +38,17 @@ public class IsoMapGame extends BasicGame{
 	public void init(GameContainer container) throws SlickException{
 		
 		world = new World();
+		
+		//permet de céer les entités liées à la map
+		IsoMapBuilder.loadFromJSON(world, "resources/map1.json");
+		
+		//internal systems
 		cameraSystem = world.setSystem(new CameraSystem(container));
-		map = IsoMap.load("resources/big-map.json",container, cameraSystem);
-		map.setShowGrid(true);
+		
+		//render systems
+		terrainRenderSystem = world.setSystem(new TerrainRenderSystem(cameraSystem, container), true);
+		terrainRenderSystem.setShowGrid(true);
+		
 		world.initialize();
 
 	}
@@ -42,18 +61,26 @@ public class IsoMapGame extends BasicGame{
 	
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
-		map.render(cameraSystem.getStartX(), cameraSystem.getStartY());
+		terrainRenderSystem.process();
+		g.setColor(Color.red);
+		g.drawRoundRect(cameraSystem.getLookAtX()-cameraSystem.getStartX()-5, cameraSystem.getLookAtY()-cameraSystem.getStartY() -5,10,10, 0);
+		
 	}
 	
 	public void mouseClicked(int button, int x, int y, int clickCount) {
-		Vector2f v = map.screen2tile(x-cameraSystem.getStartX(), y-cameraSystem.getStartY());
-		System.out.println(v);
+	}
+	
+	public void keyPressed(int key, char c){
+		if(c == KeyEvent.VK_ESCAPE){
+			System.exit(0);
+		}
 	}
 	
 	public static void main(String[] args) throws SlickException{
 		IsoMapGame map = new IsoMapGame();
 		AppGameContainer container = new AppGameContainer(map);
 		container.setAlwaysRender(true);
+		//container.setDisplayMode(1600,900,true);
 		container.setDisplayMode(800, 600, false);
 		container.start();
 	}
