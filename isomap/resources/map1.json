@@ -3,24 +3,74 @@
         {
          "data":[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 13, 17, 17, 17, 17, 5, 5, 5, 5, 5, 12, 1, 1, 1, 1, 17, 18, 5, 5, 5, 12, 1, 1, 1, 1, 1, 18, 5, 5, 5, 12, 1, 1, 1, 1, 1, 7, 5, 5, 5, 8, 1, 1, 1, 1, 1, 7, 5, 5, 5, 5, 8, 19, 1, 14, 2, 3, 5, 5, 5, 5, 5, 8, 2, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
          "height":10,
-         "name":"Calque de Tile 1",
+         "name":"terrain",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
          "width":10,
          "x":0,
-         "y":0
+         "y":0,
+         "properties":
+         	{
+            	"group":"terrain"
+         	}
         }, 
         {
-         "data":[0, 21, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 23, 0, 0, 0, 21, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 22, 21, 0, 0, 0, 0, 0, 23, 0, 0, 21, 23, 22, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 23, 0, 0, 0, 0, 0, 21, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":10,
-         "name":"foreground",
+         "name":"base_arbre",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
          "width":10,
          "x":0,
-         "y":0
+         "y":0,
+         "properties":
+         	{
+            	"group":"vegetation"
+         	}
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "name":"arbre",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0,
+         "properties":
+         	{
+            	"group":"vegetation"
+         	}
+        }, 
+        {
+         "height":10,
+         "name":"object",
+         "objects":[
+                {
+                 "height":22,
+                 "name":"coffre",
+                 "properties":
+                    {
+                     "content":"2po"
+                    },
+                 "type":"locked-safe",
+                 "visible":true,
+                 "width":27,
+                 "x":131,
+                 "y":69
+                }],         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0,
+         "properties":
+            {
+                "group":"objects"
+            }
         }],
  "orientation":"isometric",
  "properties":
@@ -47,7 +97,7 @@
         }, 
         {
          "firstgid":21,
-         "image":"resources/tileset/tree.png",
+         "image":"/resources/tileset/tree.png",
          "imageheight":131,
          "imagewidth":73,
          "margin":1,
@@ -58,7 +108,23 @@
             },
          "spacing":1,
          "tileheight":32,
-         "tilewidth":63,
+         "tilewidth":64,
+         "transparentcolor":"#000000"
+        }, 
+        {
+         "firstgid":24,
+         "image":"/resources/tileset/safe-locked.png",
+         "imageheight":64,
+         "imagewidth":64,
+         "margin":0,
+         "name":"safe-locked",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":32,
+         "tilewidth":64,
          "transparentcolor":"#000000"
         }],
  "tilewidth":64,
