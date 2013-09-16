@@ -1,6 +1,8 @@
 package isomap.rendering.components;
 
-public class SpatialForm {
+import com.artemis.Component;
+
+public class SpatialForm extends Component{
 	private String form;
 	public SpatialForm(String form) {
 		this.form = form;

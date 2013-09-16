@@ -3,6 +3,7 @@ package isomap;
 import java.awt.event.KeyEvent;
 
 import isomap.rendering.systems.CameraSystem;
+import isomap.rendering.systems.SpatialRenderSystem;
 import isomap.rendering.systems.TerrainRenderSystem;
 
 import org.newdawn.slick.AppGameContainer;
@@ -26,7 +27,7 @@ public class IsoMapGame extends BasicGame{
 
 	private World world;
 	private CameraSystem cameraSystem;
-	
+	private SpatialRenderSystem spatialRenderSystem;
 	private TerrainRenderSystem terrainRenderSystem;
 	public IsoMapGame(){
 		super("IsoMap");
@@ -38,16 +39,23 @@ public class IsoMapGame extends BasicGame{
 	public void init(GameContainer container) throws SlickException{
 		
 		world = new World();
+		ResourceManager.get().loadAllImages();
 		
-		//permet de céer les entités liées à la map
-		IsoMapBuilder.loadFromJSON(world, "resources/map1.json");
 		
 		//internal systems
 		cameraSystem = world.setSystem(new CameraSystem(container));
 		
+		//permet de céer les entités liées à la map
+		IsoMapBuilder.loadFromJSON(world, "resources/map1.json", cameraSystem);
+		
+		
+		
+		
 		//render systems
 		terrainRenderSystem = world.setSystem(new TerrainRenderSystem(cameraSystem, container), true);
 		terrainRenderSystem.setShowGrid(true);
+		
+		spatialRenderSystem = world.setSystem(new SpatialRenderSystem(container, cameraSystem), true);
 		
 		world.initialize();
 
@@ -62,6 +70,7 @@ public class IsoMapGame extends BasicGame{
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		terrainRenderSystem.process();
+		spatialRenderSystem.process();
 		g.setColor(Color.red);
 		g.drawRoundRect(cameraSystem.getLookAtX()-cameraSystem.getStartX()-5, cameraSystem.getLookAtY()-cameraSystem.getStartY() -5,10,10, 0);
 		

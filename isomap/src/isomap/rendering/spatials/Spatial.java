@@ -14,6 +14,6 @@ public abstract class Spatial {
 		this.world = world;
 	}
 	public abstract void initialize();
-	public abstract void render(Graphics g, int offsetx, int offsety);
+	public abstract void render(Graphics g, int x, int y);
 
 }

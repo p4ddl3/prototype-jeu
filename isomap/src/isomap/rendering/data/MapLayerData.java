@@ -34,4 +34,7 @@ public class MapLayerData{
 	public String getGroup(){
 		return getProperty("group");
 	}
+	public HashMap<?,?>[] getObjects(){
+		return objects;
+	}
 }

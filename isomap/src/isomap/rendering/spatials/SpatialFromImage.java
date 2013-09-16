@@ -1,7 +1,10 @@
 package isomap.rendering.spatials;
 
+import isomap.ResourceManager;
 import isomap.rendering.components.Position2D;
+import isomap.rendering.data.MapConstants;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -11,27 +14,28 @@ import com.artemis.World;
 
 public class SpatialFromImage extends Spatial{
 
-	private Position2D position;
 	private Image img;
-	private String pathFile;
-	public SpatialFromImage (World world, Entity owner, String imageFile) {
+	private String imageName;
+	private int imgOffsetX;
+	private int imgOffsetY;
+	public SpatialFromImage (World world, Entity owner, String imageName) {
 		super(world, owner);
-		pathFile = imageFile;
+		this.imageName = imageName;
 	}
 
 	@Override
 	public void initialize() {
-		position = owner.getComponent(Position2D.class);
-		try{
-			img = new Image(pathFile);
-		}catch(SlickException se){
-			se.printStackTrace();
-		}
+		img = ResourceManager.get().getImage(imageName);
+		imgOffsetX = ((img.getWidth()/MapConstants.TILE_WIDTH)-1)*MapConstants.TILE_WIDTH;
+		imgOffsetY = ((img.getHeight()/MapConstants.TILE_HEIGHT)-1)*MapConstants.TILE_HEIGHT;
 	}
 
 	@Override
-	public void render(Graphics g, int offsetx, int offsety) {
-		img.draw(position.x+offsetx, position.y+offsety);
+	public void render(Graphics g, int x, int y) {
+		img.draw(x-MapConstants.TILE_WIDTH/2-imgOffsetX,y-imgOffsetY);
+		g.setColor(Color.red);
+		//DEBUG
+		//g.drawRect(x-3, y-3, 6, 6);
 	}
 
 }

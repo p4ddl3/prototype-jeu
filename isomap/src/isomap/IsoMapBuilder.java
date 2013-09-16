@@ -1,9 +1,12 @@
 package isomap;
 
+import java.util.HashMap;
+
 import isomap.TileSet.TileSetJson;
 import isomap.rendering.data.IsoMapData;
 import isomap.rendering.data.MapConstants;
 import isomap.rendering.data.MapLayerData;
+import isomap.rendering.systems.CameraSystem;
 
 import com.artemis.World;
 import com.google.gson.Gson;
@@ -17,8 +20,14 @@ import com.google.gson.Gson;
 public class IsoMapBuilder {
 	private IsoMapBuilder() {
 	}
-	public static void loadFromJSON(World world, String filepath){
+	public static void loadFromJSON(World world, String filepath, CameraSystem camera){
 		IsoMapData data = new Gson().fromJson(Utils.loadJSON(filepath), IsoMapData.class);
+		
+		MapConstants.MAP_HEIGHT = data.getHeight();
+		MapConstants.MAP_WIDTH = data.getWidth();
+		
+		MapConstants.TILE_HEIGHT = data.getTileHeight();
+		MapConstants.TILE_WIDTH = data.getTileWidth();
 		
 		//chargement des tilesets
 		for(TileSetJson tilesetData : data.getTilesets()){
@@ -33,12 +42,19 @@ public class IsoMapBuilder {
 		
 		//2ieme : génération des entitées correspondants aux objets de la map (en cours)
 		MapLayerData objLayer = data.getMapLayersByGroup("objects").get(0);
+		for(HashMap<?,?> map : objLayer.getObjects()){
+			System.out.println(map);
+			String objType = (String)map.get("type");
+			switch(objType){
+				case "locked-safe":
+					EntityFactory.createObjectSafe(world, 3, 4, null).addToWorld();
+					EntityFactory.createObjectSafe(world, 4, 4, null).addToWorld();
+					break;
+			}
+			
+		}
 		
-		MapConstants.MAP_HEIGHT = data.getHeight();
-		MapConstants.MAP_WIDTH = data.getWidth();
 		
-		MapConstants.TILE_HEIGHT = data.getTileHeight();
-		MapConstants.TILE_WIDTH = data.getTileWidth();
 	}
 		
 }

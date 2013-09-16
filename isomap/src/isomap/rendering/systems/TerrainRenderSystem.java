@@ -121,7 +121,7 @@ public class TerrainRenderSystem extends EntitySystem{
 		int end_y = (endY>mh)?mh:endY;
 		for(int x = first_x; x < end_x; x++){
 			for(int y = first_y; y < end_y ; y++){
-				img = ResourceManager.get().getImageByGid(tl.get(x,y));
+				img = ResourceManager.get().getTileByGid(tl.get(x,y));
 				if(img != null){
 					float fx = x*tw/2 - y*tw/2;
 					float fy = y*th/2 + x*th/2;

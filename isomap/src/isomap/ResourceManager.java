@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /***
  * Cette classe permet de centraliser les ressources graphiques. Pour le moment elle permet d'associer un gid (un identifiant de tile)
@@ -13,7 +14,8 @@ import org.newdawn.slick.Image;
  */
 public class ResourceManager {
 	private static ResourceManager instance;
-	private Map<Integer, Image> images;
+	private Map<Integer, Image> tiles;
+	private Map<String, Image> images;
 	
 	public static ResourceManager get(){
 		if(instance != null)
@@ -22,7 +24,8 @@ public class ResourceManager {
 	}
 	
 	private ResourceManager() {
-		images = new HashMap<Integer, Image>();
+		tiles = new HashMap<Integer, Image>();
+		images = new HashMap<String, Image>();
 	}
 	
 	/**
@@ -33,17 +36,46 @@ public class ResourceManager {
 		
 		int firstGid = set.getFirstGid();
 		for(Image img : set.getImages()){
-			images.put(firstGid++, img);
+			tiles.put(firstGid++, img);
 			
 		}
 	}
 	/**
-	 * retourne l'image associée à son identifiant gid.
+	 * retourne le tile associée à son identifiant gid.
 	 * @param gid l'identifiant gid
-	 * @return image associée
+	 * @return image du tile associé
 	 */
-	public Image getImageByGid(int gid){
-		return images.get(gid);
+	public Image getTileByGid(int gid){
+		return tiles.get(gid);
+	}
+	
+	public Image loadImage(String imageName, String imagePath){
+		Image img = null;
+		try {
+			if(images.keySet().contains(imageName)){
+				throw new NameAlreadyUsedException();
+			}
+			img = new Image(imagePath);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		} catch (NameAlreadyUsedException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		images.put(imageName, img);
+		return img;
+	}
+	public Image getImage(String imageName){
+		return images.get(imageName);
+	}
+	public void loadAllImages(){
+		loadImage("locked-safe", "/resources/tileset/safe-locked.png");
+	}
+	private class NameAlreadyUsedException extends Exception{
+
+		private static final long serialVersionUID = 1L;
+		
 	}
 
 }
